@@ -14,7 +14,7 @@ If your application is running on your development machine natively, you must us
 
 :::
 
-```yaml title="docker-compose.yaml"
+```yaml title="docker-compose.yml"
 version: '3.7'
 services:
   prometheus:
@@ -47,3 +47,17 @@ scrape_configs:
         labels:
           group: 'app'
 ```
+
+:::info
+
+If you want to see a real world example, check out the [demo repo](https://github.com/Mozart409/rust-prometheus-demo).
+
+:::
+
+## Screenshots
+
+<img src="/prometheus-query.png" alt="Shows a prometheus query" />
+
+<br />
+
+<img src="/prometheus-targets.png" alt="Shows the prometheus targets" />

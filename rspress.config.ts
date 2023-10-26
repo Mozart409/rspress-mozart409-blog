@@ -29,5 +29,6 @@ export default defineConfig({
   },
   markdown: {
     showLineNumbers: true
-  }
+  },
+  globalStyles: path.join(__dirname, 'styles/index.css')
 })
