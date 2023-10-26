@@ -7,13 +7,13 @@ hero:
   tagline: Mozart409 Blog tagline
   actions:
     - theme: brand
-      text: Quick Start
-      link: /guide/
+      text: Blog
+      link: /blog/
     - theme: alt
-      text: Github
-      link: https://github.com/web-infra-dev/rspress
+      text: Source
+      link: https://github.com/mozart409/rspress-mozart409-blog
   image:
-    src: /rspress-icon.png
+    src: /mozart409-logo.svg
     alt: Mozart409 Blog Logo
 features:
   - title: Blazing fast build speed

@@ -1,18 +1,33 @@
-import * as path from 'path';
-import { defineConfig } from 'rspress/config';
+import * as path from 'path'
+import { defineConfig } from 'rspress/config'
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
   title: 'Mozart409 Blog',
   description: 'My personal blog',
-  icon: "/rspress-icon.png",
+  icon: '/favicon.svg',
   logo: {
-    light: "/rspress-light-logo.png",
-    dark: "/rspress-dark-logo.png",
+    light: '/favicon.svg',
+    dark: '/favicon.svg'
   },
   themeConfig: {
+    lastUpdated: true,
+    enableContentAnimation: true,
+    search: true,
     socialLinks: [
-      { icon: 'github', mode: 'link', content: 'https://github.com/web-infra-dev/rspress' },
-    ],
+      {
+        icon: 'github',
+        mode: 'link',
+        content: 'https://github.com/mozart409/'
+      },
+      {
+        icon: 'twitter',
+        mode: 'link',
+        content: 'https://twitter.com/marc_van_sax'
+      }
+    ]
   },
-});
+  markdown: {
+    showLineNumbers: true
+  }
+})

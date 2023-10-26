@@ -1,0 +1,37 @@
+---
+title: Helpful Eslint Rules
+description: When you work with remix you should use this eslintrc config to avoid common mistakes.
+---
+
+# Helpful Eslint Rules
+
+## Introduction
+
+Did you ever encounter this error message and wondered why it happened? If you use @remix-run/node you should let eslint help you to avoid this error.
+
+```js title=".eslintrc.js"
+/** @type {import('@types/eslint').Linter.BaseConfig} */
+module.exports = {
+  ... // other config
+  rules: {
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: 'express',
+            importNames: ['json'],
+            message: 'Please use "@remix-run/node" instead'
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Then you get the following error when you try to import the "wrong" json module.
+
+```js
+error  'json' import from 'express' is restricted. Please use "@remix-run/node" instead  no-restricted-imports
+```
