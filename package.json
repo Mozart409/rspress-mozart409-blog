@@ -1,12 +1,12 @@
 {
-  "name": "rspress-doc-template",
-  "version": "1.0.0",
+  "name": "rspress-mozart409-blog",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "rspress dev",
     "build": "rspress build",
     "preview": "rspress preview",
-    "start": "pnpm run build && pnpm run preview"
+    "start": "rspress build && rspress preview"
   },
   "dependencies": {
     "rspress": "^1.6.0"
