@@ -1,0 +1,22 @@
+[
+  "Overview",
+  {
+    "type": "custom-link",
+    "link": "/",
+    "label": "Introduction"
+  },
+  {
+    "type": "dir",
+    "name": "remix",
+    "label": "Remix",
+    "collapsible": true,
+    "collapsed": false
+  },
+  {
+    "type": "dir",
+    "name": "docker",
+    "label": "Docker",
+    "collapsible": true,
+    "collapsed": false
+  }
+]
