@@ -1,0 +1,7 @@
+compatibility_date = "2023-10-30"
+main = "src/index.ts"
+name = "workers-rspress-mozart409-blog"
+route = "https://blog.mozart409.com/*"
+
+[site]
+bucket = "./doc_build"
