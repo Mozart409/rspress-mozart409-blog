@@ -9,9 +9,10 @@
     "start": "rspress build && rspress preview"
   },
   "dependencies": {
-    "rspress": "^1.6.0"
+    "rspress": "^1.6.2"
   },
   "devDependencies": {
-    "@types/node": "^20.9.0"
+    "@types/node": "^20.9.0",
+    "wrangler": "^3.16.0"
   }
 }
