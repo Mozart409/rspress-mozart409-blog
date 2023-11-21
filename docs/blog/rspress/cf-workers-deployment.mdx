@@ -1,0 +1,97 @@
+---
+title: Rspress on Cloudflare Workers
+description: How to deploy rspress to cloudflare workers.
+tags:
+  - rspress
+  - cloudflare
+  - workers
+  - cf
+---
+
+# Rspress on Cloudflare Workers
+
+I had problems deploying this blog via cloudflare pages and so I switch to use cloudflare workers. This is a short guide how to setup rspress with cloudflare workers.
+
+## Setup a Rspress project
+
+```bash
+pnpm create rspress@latest
+```
+
+## Setup Cloudflare Workers
+
+```bash
+pnpm add --save-dev wrangler @cloudflare/kv-asset-handler
+```
+
+## Setup wrangler.toml
+
+```toml title="wrangler.toml"
+compatibility_date = "2023-10-30"
+main = "src/index.ts" # The entry point for your Workers application
+name = "UNIQUE NAME" # Your project's name
+route = "https://blog.YOURDOMAIN.com/*" # The route to your Workers application
+
+[build]
+command = "npm run rs.build" # To preview the blog within the cloudflare workers environment,
+# create a npm script to run rspress build
+cwd = "." # Current working directory relative to wrangler.toml
+watch_dir = "./docs" # Your blogposts directory
+
+[site]
+bucket = "./doc_build" # Important to create a bucket for the static files
+```
+
+## Setup package.json
+
+For local development use `rspress dev` and to preview the blog with cloudflare workers enabled use `wrangler dev`. To deploy the blog use `wrangler deploy`.
+
+```js title="package.json"
+"scripts": {
+    "rs.dev": "rspress dev",
+    "rs.build": "rspress build",
+    "preview": "rspress preview",
+    "start": "rspress build && rspress preview",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+```
+
+## Create index.ts
+
+To handle the static files, we need to create a `index.ts` file in the `src` directory. So the cloudflare worker can handle the static files.
+
+```ts title="src/index.ts"
+import { getAssetFromKV } from '@cloudflare/kv-asset-handler'
+// @ts-ignore
+import manifestJSON from '__STATIC_CONTENT_MANIFEST'
+const assetManifest = JSON.parse(manifestJSON)
+
+export default {
+  async fetch(request, env, ctx) {
+    try {
+      // Add logic to decide whether to serve an asset or run your original Worker code
+      return await getAssetFromKV(
+        {
+          request,
+          waitUntil: ctx.waitUntil.bind(ctx)
+        },
+        {
+          ASSET_NAMESPACE: env.__STATIC_CONTENT,
+          ASSET_MANIFEST: assetManifest
+        }
+      )
+    } catch (e) {
+      let pathname = new URL(request.url).pathname
+      return new Response(`"${pathname}" not found`, {
+        status: 404,
+        statusText: 'not found'
+      })
+    }
+  }
+}
+```
+
+## Example this blog
+
+If you want to see a production setup of this blog, you can check out the [source code](https://github.com/mozart409/rspress-mozart409-blog) and the [blog](https://blog.mozart409.com/).
