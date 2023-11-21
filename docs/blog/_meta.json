@@ -6,6 +6,13 @@
   },
   {
     "type": "dir",
+    "name": "rspress",
+    "label": "Rspress",
+    "collapsible": true,
+    "collapsed": false
+  },
+  {
+    "type": "dir",
     "name": "remix",
     "label": "Remix",
     "collapsible": true,
