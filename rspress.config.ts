@@ -27,6 +27,21 @@ export default defineConfig({
       }
     ]
   },
+  builderConfig: {
+    html: {
+      tags: [
+        // Configure Umami
+        {
+          tag: 'script',
+          attrs: {
+            async: true,
+            src: 'https://umami-production-7f3d.up.railway.app/script.js',
+            'data-website-id': '545636d4-85f2-4b0f-8160-8a3a2f8044db'
+          }
+        }
+      ]
+    }
+  },
   markdown: {
     showLineNumbers: true
   },
