@@ -16,6 +16,6 @@
   "devDependencies": {
     "@cloudflare/kv-asset-handler": "^0.3.0",
     "@types/node": "^20.9.4",
-    "wrangler": "^3.17.1"
+    "wrangler": "^3.19.0"
   }
 }
