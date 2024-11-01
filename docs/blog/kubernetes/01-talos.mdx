@@ -1,0 +1,41 @@
+---
+title: 01 - Talos Linux
+description: Talos Linux is a complete operating system for kubernetes
+tags:
+  - k8s
+  - kubernetes
+  - talos
+---
+
+# 01 - Talos Linux
+
+This is my journey about my home lab setup with talos linux. At my day job we run it as well.
+
+## Expectations
+
+- Run a multi node kubernetes cluster with stateful and stateless applications.
+- Access my homelab from my mobile devices.
+- Backup dbs to an S3 compatible storage provider.
+
+## Techstack
+
+- [Talos](https://talos.dev/docs)
+- Kubernetes
+- [Tailscale](https://tailscale.com) or [Cloudflare Tunnels](https://www.cloudflare.com/products/tunnel/)
+- [Cilium](https://cilium.io/) as CNI
+- [OpenEBS](https://openebs.io/) as CSI, at work we use Longhorn, but at home I want to try it out
+- [FluxCD](https://fluxcd.io/), at work we use [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) and we are very happy, but at home I want to try something else
+
+## Network
+
+My current simplified home network.
+
+<img src="/home-network.svg" alt="Shows my current homenetwork" />
+
+<br />
+
+- My Router only connects to my ISP.
+- PiHole handles DHCP and dns blocking.
+- My Proxmox instance is my old desktop pc which connects to my unifi switch.
+- The Unifi Wifi hotspot handles multiple wireless networks, one for work, IoT devices and private devices.
+
