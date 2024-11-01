@@ -11,11 +11,12 @@
     "deploy": "wrangler deploy"
   },
   "dependencies": {
-    "rspress": "^1.9.3"
+    "rspress": "^1.35.3"
   },
   "devDependencies": {
-    "@cloudflare/kv-asset-handler": "^0.3.0",
-    "@types/node": "^20.10.8",
-    "wrangler": "^3.22.4"
+    "@cloudflare/kv-asset-handler": "^0.3.4",
+    "@rspress/plugin-shiki": "^1.35.3",
+    "@types/node": "^20.17.5",
+    "wrangler": "^3.84.1"
   }
 }
