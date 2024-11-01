@@ -4,9 +4,13 @@ name = "workers-rspress-mozart409-blog"
 route = "https://blog.mozart409.com/*"
 
 [build]
-command = "npm run rs.build"
+command = "pnpm run rs.build"
 cwd = "."
 watch_dir = "./docs"
 
 [site]
 bucket = "./doc_build"
+
+[observability]
+enabled = true
+head_sampling_rate = 1
