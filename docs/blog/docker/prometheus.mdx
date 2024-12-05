@@ -1,6 +1,6 @@
 ---
-title: Prometheus and Docker Compose
-description: How to setup prometheus for local development
+title: Setting Up Prometheus with Docker Compose for Local Development
+description: A comprehensive guide on configuring Prometheus for monitoring your application during development using Docker Compose.
 tags:
   - prometheus
   - docker
@@ -8,15 +8,22 @@ tags:
   - monitoring
 ---
 
-# Prometheus and Docker Compose
+# Setting Up Prometheus with Docker Compose for Local Development
 
-When developing an application, it is important to monitor the performance of the application. Prometheus is a monitoring and alerting toolkit that is used to monitor the performance of an application. In this article, I will show you how to setup Prometheus for local development using Docker Compose.
+When developing applications, monitoring performance metrics is crucial for identifying bottlenecks, ensuring reliability, and optimizing resource usage. Prometheus is an open-source monitoring and alerting toolkit designed for this purpose. This blog post will guide you through setting up Prometheus for local development using Docker Compose.
+
+### Why Use Prometheus Locally?
+Using Prometheus locally allows developers to:
+
+- Quickly identify performance issues in real-time.
+- Test alerts and monitoring configurations before deploying to production.
+- Understand how applications behave under different conditions or loads.
 
 ### 1. Create a docker-compose.yml file
 
 :::info
 
-If your application is running on your development machine natively, you must use the `network_mode: host` to access the docker container on the host machine.
+When running your application on your development machine outside of Docker, use `network_mode: host` to ensure Docker containers can communicate with services on your host machine.
 
 :::
 
@@ -34,6 +41,8 @@ services:
 ```
 
 ### 2. Create a prometheus.yml file
+
+Create a prometheus.yml file to define how Prometheus should scrape metrics:
 
 ```yaml title="prometheus.yml"
 global:
@@ -53,6 +62,12 @@ scrape_configs:
         labels:
           group: 'app'
 ```
+
+### Explanation:
+
+- scrape_interval - Defines how frequently Prometheus checks for metrics.
+- external_labels - Adds labels to all metrics for easy filtering.
+- scrape_configs - Defines which targets Prometheus should scrape metrics from.
 
 :::info
 

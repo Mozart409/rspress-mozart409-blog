@@ -1,41 +1,72 @@
 ---
 title: 01 - Talos Linux
-description: Talos Linux is a complete operating system for kubernetes
+description: Talos Linux is a complete operating system designed for Kubernetes
 tags:
   - k8s
   - kubernetes
   - talos
+  - homelab
+  - networking
 ---
 
 # 01 - Talos Linux
 
-This is my journey about my home lab setup with talos linux. At my day job we run it as well.
+Welcome to the first post in my series where I document my journey with setting up a home lab using Talos Linux. Talos Linux is not just another Linux distribution; it's an immutable, secure OS tailored for running Kubernetes clusters efficiently. Both in my professional environment and now in my personal setup, Talos Linux has proven to be a robust choice.
+
+## Why Talos Linux?
+
+Before we dive into the setup, let's explore why I chose Talos:
+
+- **Security**: With an immutable design, Talos minimizes attack vectors by not allowing runtime modifications to system files.
+- **Simplicity**: Its declarative configuration system reduces the complexity of managing node configurations.
+- **Kubernetes Native**: Built from the ground up for Kubernetes, ensuring seamless integration without the overhead typical of other Linux distributions.
 
 ## Expectations
 
-- Run a multi node kubernetes cluster with stateful and stateless applications.
-- Access my homelab from my mobile devices.
-- Backup dbs to an S3 compatible storage provider.
+My goals for this home lab project are multifaceted:
 
-## Techstack
+- **Cluster Capabilities**: I aim to run a multi-node Kubernetes cluster capable of handling both stateful and stateless applications. This setup will allow me to experiment with various workloads, from simple web apps to more complex database-driven services.
+  
+- **Mobile Access**: Ensuring that I can access my homelab from my mobile devices is crucial.
 
-- [Talos](https://talos.dev/docs)
-- Kubernetes
-- [Tailscale](https://tailscale.com) or [Cloudflare Tunnels](https://www.cloudflare.com/products/tunnel/)
-- [Cilium](https://cilium.io/) as CNI
-- [OpenEBS](https://openebs.io/) as CSI, at work we use Longhorn, but at home I want to try it out
-- [FluxCD](https://fluxcd.io/), at work we use [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) and we are very happy, but at home I want to try something else
+- **Data Management**: Implementing a robust backup solution where databases are periodically backed up to an S3-compatible storage provider to safeguard against data loss.
 
-## Network
+## Tech Stack
 
-My current simplified home network.
+Here's the technology stack I've selected for this project:
 
-<img src="/home-network.svg" alt="Shows my current homenetwork" />
+- **[Talos](https://talos.dev/docs)** - For its security features and Kubernetes-native approach.
+- **Kubernetes** - The heart of the cluster, managing containerized workloads and services.
+- **[Tailscale](https://tailscale.com) / [Cloudflare Tunnels](https://www.cloudflare.com/products/tunnel/)** - For secure, remote access to my home network and services.
+- **[Cilium](https://cilium.io/)** - As the Container Network Interface (CNI), providing network security, load balancing, and more with eBPF.
+- **[OpenEBS](https://openebs.io/)** - For storage management within Kubernetes, although at work we've used Longhorn, I'm keen to explore OpenEBS at home for its simplicity and Kubernetes-native integration.
+- **[FluxCD](https://fluxcd.io/)** - Instead of ArgoCD, which we use at work, FluxCD will be my choice at home to manage Kubernetes configurations as code.
 
-<br />
+## Network Setup
 
-- My Router only connects to my ISP.
-- PiHole handles DHCP and dns blocking.
-- My Proxmox instance is my old desktop pc which connects to my unifi switch.
-- The Unifi Wifi hotspot handles multiple wireless networks, one for work, IoT devices and private devices.
+A simplified diagram of my home network setup:
 
+<img src="/home-network.svg" alt="Shows my current home network" />
+
+### Breakdown:
+
+- **Router**: Acts solely as a gateway to my ISP, keeping the network edge simple.
+  
+- **PiHole**: Manages all DHCP requests and provides ad-blocking DNS services across the network, enhancing privacy and reducing bandwidth usage.
+
+- **Proxmox Server**: My old desktop PC has been repurposed into a Proxmox host, connected via my Unifi switch. This server will host my Talos nodes in virtual machines, giving me flexibility in testing and deployment.
+
+- **Unifi WiFi Hotspot**: Segregates network traffic by creating different SSIDs for work, IoT devices, and personal use, improving security and network management.
+
+## Next Steps
+
+In upcoming posts, I will detail:
+
+- The installation process of Talos Linux on virtual machines within Proxmox.
+- Configuring Kubernetes with Talos, including setting up the control plane and worker nodes.
+- Integrating network solutions like Tailscale for secure remote access.
+- Implementing and testing my chosen CNI and CSI solutions within the cluster.
+
+Stay tuned as I take you through each step of setting up and optimizing a Kubernetes cluster with Talos Linux at home!
+
+---
